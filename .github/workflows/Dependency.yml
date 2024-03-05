@@ -32,7 +32,7 @@ jobs:
   Dependency-Scan-Job: # Trivyを使用して脆弱性をスキャン&GitHub Securityに送信するJob
     runs-on: ubuntu-20.04
     permissions:
-      # required for all workflows
+      # GitHub Securityに送信するので必要な項目
       security-events: write
     steps:
       - name: Checkout repository

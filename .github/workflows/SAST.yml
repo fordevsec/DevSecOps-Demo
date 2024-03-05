@@ -8,7 +8,7 @@ on: #workflowを実行する条件を指定
   #   branches: [ "main" ]
 
 jobs:
-  CodeQL-Job:
+  CodeQL-Job: # CodeQLで脆弱性をスキャンし、GitHub Securityに反映させるJob
     strategy:
       matrix:
         language: [ 'python' ]
@@ -16,7 +16,7 @@ jobs:
     
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
     permissions:
-      # 必須項目
+      # GitHub Securityに送信するので必要な項目
       security-events: write
 
       # プライベートリポジトリに必要な項目
