@@ -9,7 +9,6 @@ on: #workflowを実行する条件を指定
 
 jobs:
   CodeQL-Job:
-    name: Analyze
     strategy:
       matrix:
         language: [ 'python' ]

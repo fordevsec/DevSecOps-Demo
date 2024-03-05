@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  UT-job: # Job名
+  UT-Job: # Job名
     runs-on: ubuntu-latest #実行環境を指定
     strategy: 
       matrix: # 変数を設定
