@@ -35,13 +35,16 @@ jobs:
       # GitHub Securityに送信するので必要な項目
       security-events: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-sbom-report
 
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
+          scan-type: 'sbom'
+          input: 'dependency-results.sbom.json'
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
