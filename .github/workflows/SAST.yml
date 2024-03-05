@@ -4,8 +4,8 @@ on: #workflowを実行する条件を指定
   push:  
     branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
 
-  # pull_request:
-  #   branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   CodeQL-Job: # CodeQLで脆弱性をスキャンし、GitHub Securityに反映させるJob
