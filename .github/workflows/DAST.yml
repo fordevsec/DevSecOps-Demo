@@ -1,0 +1,13 @@
+name: "DAST-workflow"
+
+on: #workflowを実行する条件を指定
+  push:  
+    branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
+
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+  DAST-Job1:
+    name: Run DAST
+    run: echo "Run DAST here"
