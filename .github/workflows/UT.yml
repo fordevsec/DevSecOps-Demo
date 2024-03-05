@@ -34,9 +34,9 @@ jobs:
         run: pip install -r requirements.txt 
 
       - name: Run Pytest # pytestを実施し、xml(JUnit)でレポートを出力
-        run: pytest ./test/test_python-smple.py  --junit-xml test-results/pytest.xml 
+        run: pytest ./test/test_python-smple.py  --junit-xml pytest.xml 
 
       - name: Publish Unit Test Results # pytestで出力したレポートを発行
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          junit_files: test-results/*.xml
+          junit_files: pytest.xml 
