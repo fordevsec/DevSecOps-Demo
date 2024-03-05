@@ -1,0 +1,45 @@
+name: "SAST-workflow"
+
+on: #workflowを実行する条件を指定
+  push:  
+    branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
+
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+  CodeQL-Job:
+    name: Analyze
+    strategy:
+      matrix:
+        language: [ 'python' ]
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    permissions:
+      # 必須項目
+      security-events: write
+
+      # プライベートリポジトリに必要な項目
+      # actions: read
+      # contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # CodeQLの初期設定
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+
+    # 自動ビルド
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    # CodeQL実行
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
