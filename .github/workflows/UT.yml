@@ -1,0 +1,45 @@
+name: "UT-workflow"
+
+on:
+  push:
+    branches: [ "feature/**",]
+  # pull_request:
+  #   branches: [ "main" ,'dependabot/**']
+
+
+
+
+jobs:
+
+  UT-Job: # pytestを実行し、GitHubのテスト結果に反映させるJob
+    runs-on: ubuntu-latest #実行環境を指定
+    strategy: 
+      matrix: # 変数を設定
+        python-version: [ "3.9" ]
+        architecture: [ "x64" ]
+    permissions:
+      # プルリクエストにテスト結果を反映させるのに必要な項目
+      checks: write
+      pull-requests: write
+    
+    steps:
+      
+      - name: Checkout repository
+        uses: actions/checkout@v3 # コードをチェックアウト
+
+      - name: Setup Python ${{ matrix.python-version }} # ランタイムをセットアップ
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
+
+      - name: Install dependencies # テストを実行するために依存関係のインストール
+        run: pip install -r requirements.txt 
+
+      - name: Run Pytest # pytestを実施し、xml(JUnit)でレポートを出力
+        run: pytest ./test/test_python-smple.py  --junit-xml pytest.xml 
+
+      - name: Publish Unit Test Results # pytestで出力したレポートを発行
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          junit_files: pytest.xml 
