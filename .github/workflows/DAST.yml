@@ -8,7 +8,7 @@ on: #workflowを実行する条件を指定
   #   branches: [ "main" ]
 
 jobs:
-  DAST-Job1:
+  DAST-Job:
     runs-on: ubuntu-latest
     steps:
 
