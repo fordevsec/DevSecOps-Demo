@@ -44,7 +44,6 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'sbom'
-          input: 'dependency-results.sbom.json'
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
