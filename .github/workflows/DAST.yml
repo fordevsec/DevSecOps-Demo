@@ -10,5 +10,6 @@ on: #workflowを実行する条件を指定
 jobs:
   DAST-Job1:
     steps:
-      name: Run DAST
-      run: echo "Run DAST here"
+
+      - name: Run DAST 
+        run: echo "Run DAST here" 
