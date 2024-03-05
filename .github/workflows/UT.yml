@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-      - uses: actions/checkout@v3 # コードをチェックアウト
+        uses: actions/checkout@v3 # コードをチェックアウト
 
       - name: Setup Python ${{ matrix.python-version }} # ランタイムをセットアップ
         uses: actions/setup-python@v3
