@@ -9,6 +9,7 @@ on: #workflowを実行する条件を指定
 
 jobs:
   DAST-Job1:
+    runs-on: ubuntu-latest
     steps:
 
       - name: Run DAST 
