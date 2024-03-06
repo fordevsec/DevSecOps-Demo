@@ -3,8 +3,8 @@ name: "Dependency-workflow"
 on:
   push:
     branches: [ "feature/**",]
-  # pull_request:
-  #   branches: [ "main" ,'dependabot/**']
+  pull_request:
+    branches: [ "main" ]
 
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
         with:
           name: sbom-report
 
-      - name: Run Trivy vulnerability scanner in repo mode
+      - name: Run Trivy vulnerability scanner in SBOM
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'sbom'

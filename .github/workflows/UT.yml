@@ -3,8 +3,8 @@ name: "UT-workflow"
 on:
   push:
     branches: [ "feature/**",]
-  # pull_request:
-  #   branches: [ "main" ,'dependabot/**']
+  pull_request:
+    branches: [ "main" ]
 
 
 
