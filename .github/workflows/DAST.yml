@@ -30,7 +30,7 @@ jobs:
         run: pip install -r requirements.txt 
 
       - name: Run localhost server 
-        run: python src/manage.py runserver
+        run: python src/manage.py runserver &
 
       - name: ZAP Full Scan 
         uses: zaproxy/action-full-scan@v0.9.0
