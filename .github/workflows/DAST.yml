@@ -14,6 +14,10 @@ jobs:
       matrix: # 変数を設定
         python-version: [ "3.11" ]
         architecture: [ "x64" ]
+    permissions:
+      checks: write
+      pull-requests: write
+      issues: write
 
     steps:
 
@@ -38,3 +42,4 @@ jobs:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
           token: ${{ secrets.GITHUB_TOKEN }}
           target: "http://localhost:8000/testapp/"
+          artifact_name: DAST-Scan-Report
