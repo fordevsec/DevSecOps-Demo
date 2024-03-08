@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest #実行環境を指定
     strategy: 
       matrix: # 変数を設定
-        python-version: [ "3.11" ]
+        python-version: [ "3.8" ]
         architecture: [ "x64" ]
     permissions:
       # プルリクエストにテスト結果を反映させるのに必要な項目

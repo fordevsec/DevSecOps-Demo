@@ -1,7 +1,7 @@
 name: "DAST-workflow"
 
 on: #workflowを実行する条件を指定
-  push:  
+  # push:  
     # branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
 
   pull_request:
@@ -13,7 +13,7 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     strategy: 
       matrix: # 変数を設定
-        python-version: [ "3.11" ]
+        python-version: [ "3.8" ]
         architecture: [ "x64" ]
     permissions:
       checks: write
