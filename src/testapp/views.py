@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import traceback
 
 def index(request):
-    return HttpResponse("Hello World!")
+    
+    try:
+        return HttpResponse("Hello World!")
+    except Exception as e:
+        # dummy for Code Scanning 
+        return traceback.format_exc()
+
