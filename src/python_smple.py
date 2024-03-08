@@ -1,3 +1,7 @@
+SECRET_KEY = "testSecret"
+OTHER_SECRET = "testSecret"
 def f():
-    return 3
+    return SECRET_KEY
+
+print(f)
 
