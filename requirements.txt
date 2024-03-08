@@ -3,5 +3,5 @@ numpy==1.26.4
 pandas==2.2.1
 matplotlib==3.8.3
 scikit-learn==1.4.0
-django==4.1
+django==4.1.13
 cbor2==5.5.1
