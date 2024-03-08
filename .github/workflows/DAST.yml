@@ -13,7 +13,7 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     strategy: 
       matrix: # 変数を設定
-        python-version: [ "3.8" ]
+        python-version: [ "3.11" ]
         architecture: [ "x64" ]
     permissions:
       checks: write

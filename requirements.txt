@@ -1,6 +1,7 @@
 pytest==8.1.0
-numpy==1.8.0
+numpy==1.26.4
 pandas==2.2.1
 matplotlib==3.8.3
 scikit-learn==1.4.0
 django==4.1
+cbor2==5.5.1
