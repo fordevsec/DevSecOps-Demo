@@ -2,7 +2,7 @@ name: "DAST-workflow"
 
 on: #workflowを実行する条件を指定
   # push:  
-  #   branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
+    # branches: [ "feature/**"] #指定したブランチにプッシュした場合に実行
 
   pull_request:
     branches: [ "main" ]
@@ -10,7 +10,37 @@ on: #workflowを実行する条件を指定
 jobs:
   DAST-Job:
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    strategy: 
+      matrix: # 変数を設定
+        python-version: [ "3.11" ]
+        architecture: [ "x64" ]
+    permissions:
+      checks: write
+      pull-requests: write
+      issues: write
+
     steps:
 
-      - name: Run DAST 
-        run: echo "Run DAST here" 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python ${{ matrix.python-version }} # ランタイムをセットアップ
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
+      
+      - name: Install dependencies # テストを実行するために依存関係のインストール
+        run: pip install -r requirements.txt 
+
+      - name: Run localhost server 
+        run: python src/manage.py runserver &
+
+      - name: ZAP Full Scan 
+        uses: zaproxy/action-full-scan@v0.9.0
+        with:
+          # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target: "http://localhost:8000/testapp/"
+          artifact_name: DAST-Scan-Report

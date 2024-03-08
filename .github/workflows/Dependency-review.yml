@@ -10,6 +10,7 @@ permissions:
 jobs:
   Dependency-review-Job: #Dependency reviewを有効にするJob
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

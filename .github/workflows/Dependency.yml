@@ -1,8 +1,8 @@
 name: "Dependency-workflow"
 
 on:
-  push:
-    branches: [ "feature/**",]
+  # push:
+  #   branches: [ "feature/**"]
   pull_request:
     branches: [ "main" ]
 
@@ -27,7 +27,7 @@ jobs:
         with:
           name: sbom-report
           path: '${{ github.workspace }}/dependency-results.sbom.json'
-          retention-days: 20 # 90 is the default
+          retention-days: 2 # 90 is the default
   
   Dependency-Scan-Job: # Trivyを使用して脆弱性をスキャン&GitHub Securityに送信するJob
     runs-on: ubuntu-20.04
