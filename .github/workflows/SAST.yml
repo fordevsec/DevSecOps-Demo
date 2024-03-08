@@ -13,6 +13,7 @@ jobs:
       matrix:
         language: [ 'python' ]
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    if: github.actor != 'dependabot[bot]'
     
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
     permissions:

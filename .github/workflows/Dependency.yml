@@ -1,8 +1,8 @@
 name: "Dependency-workflow"
 
 on:
-  push:
-    branches: [ "feature/**"]
+  # push:
+  #   branches: [ "feature/**"]
   pull_request:
     branches: [ "main" ]
 
