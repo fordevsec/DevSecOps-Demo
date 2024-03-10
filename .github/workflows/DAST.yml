@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Setup Python ${{ matrix.python-version }} # ランタイムをセットアップ
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           architecture: ${{ matrix.architecture }}
@@ -43,4 +43,5 @@ jobs:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
           token: ${{ secrets.GITHUB_TOKEN }}
           target: "http://localhost:8000/testapp/"
+
           artifact_name: DAST-Scan-Report
