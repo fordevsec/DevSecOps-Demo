@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';" /> -->
+    <meta charset="UTF-8">
+    <title>Post Form</title>
+</head>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    function setMessage(){
+        var t=location.hash.slice(1);
+        $("div[id="+t+"]").text("The DOM is now loaded and can be manipulated.");
+    }
+    $(document).ready(setMessage  );
+    $(window).bind("hashchange",setMessage)
+    </script>
+
+<body>
+    <span><a href="#message" > Show Here</a><div id="message">Showing Message1</div></span>
+    <span><a href="#message1" > Show Here</a><div id="message1">Showing Message2</div></span>
+    <span><a href="#message2" > Show Here</a><div id="message2">Showing Message3</div></span>
+    <h4>Post の編集</h4>
+    {% if post_id %}
+    <form action="{% url 'sample_app:edit_post' post_id=post_id %}" method="post">
+        {% else %}
+        <form action="{% url 'sample_app:create_post' %}" method="post">
+            {% endif %}
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">送信</button>
+        </form>
+        <a href="{% url 'sample_app:read_post' %}">戻る</a>
+</body>
+
+</html>
