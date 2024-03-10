@@ -42,6 +42,6 @@ jobs:
         with:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
           token: ${{ secrets.GITHUB_TOKEN }}
-          target: "http://localhost:8000/testapp/"
+          target: "http://localhost:8000/sample_app/pos/"
 
           artifact_name: DAST-Scan-Report
