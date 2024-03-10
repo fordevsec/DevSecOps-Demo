@@ -44,7 +44,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target: "http://localhost:8000/testapp/"
           artifact_name: DAST-Scan-Report
-        fail_action:
-          description: 'Fail or pass the action based on alerts'
-          required: false
-          default: false
+      - name: Exit with success
+        run: exit 0
