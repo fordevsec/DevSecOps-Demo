@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';" /> -->
+  <meta charset="UTF-8">
+  <title>Post lists</title>
+</head>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+  function setMessage(){
+      var t=location.hash.slice(1);
+      $("div[id="+t+"]").text("The DOM is now loaded and can be manipulated.");
+  }
+  $(document).ready(setMessage  );
+  $(window).bind("hashchange",setMessage)
+  </script>
+
+<body>
+  <!-- <script src="../js/embed.js"></script> -->
+  <span><a href="#message" > Show Here</a><div id="message">Showing Message1</div></span>
+  <span><a href="#message1" > Show Here</a><div id="message1">Showing Message2</div></span>
+  <span><a href="#message2" > Show Here</a><div id="message2">Showing Message3</div></span>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <th>{{ post.id }}</th>
+        <td>{{ post.name }}</td>
+        <td>{{ post.micropost }}</td>
+        <td>
+          <a href="{% url 'sample_app:edit_post' post_id=post.id %}">修正</a>
+          <a href="{% url 'sample_app:delete_post' post_id=post.id %}">削除</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'sample_app:create_post' %}">作成</a>
+</body>
+
+</html>
