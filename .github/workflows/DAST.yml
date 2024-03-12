@@ -10,15 +10,15 @@ on: #workflowを実行する条件を指定
 jobs:
   DAST-Job:
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    strategy: 
-      matrix: # 変数を設定
-        python-version: [ "3.11" ]
-        architecture: [ "x64" ]
-    permissions:
-      checks: write
-      pull-requests: write
-      issues: write
+    # if: github.actor != 'dependabot[bot]'
+    # strategy: 
+    #   matrix: # 変数を設定
+    #     python-version: [ "3.11" ]
+    #     architecture: [ "x64" ]
+    # permissions:
+    #   checks: write
+    #   pull-requests: write
+    #   issues: write
 
     steps:
 
