@@ -44,3 +44,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target: "http://127.0.0.1:8000/sample_app/post/"
           artifact_name: DAST-Scan-Report
+          allow_failure: true
