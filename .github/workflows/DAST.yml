@@ -35,23 +35,12 @@ jobs:
         run: pip install -r requirements.txt 
 
       - name: Run localhost server 
-        run: python src/manage.py runserver &
-
-      - uses: actions/checkout@v2
-        with:
-        ref: main
-      - name: Building Docker
-        run: docker-compose build
-      - name: Launching the app
-        run: docker-compose up --detach
+        run: python3.10 manage.py runserver
 
       - name: ZAP Full Scan 
         uses: zaproxy/action-full-scan@v0.9.0
         with:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
-          target: "http://localhost:8000/sample_app/post/"
-          fail_action: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue_title: Security Tests
+          target: "http://localhost:8000/sample_app/post/"
           artifact_name: DAST-Scan-Report
-          allow_failure: true
