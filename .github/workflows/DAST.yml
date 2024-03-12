@@ -38,10 +38,7 @@ jobs:
         run: python src/manage.py runserver &
 
       - name: ZAP Full Scan 
-        # uses: zaproxy/action-full-scan@v0.9.0
-        uses: ./
-        id: action-full-scan
-
+        uses: zaproxy/action-full-scan@v0.9.0
         with:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
           token: ${{ secrets.GITHUB_TOKEN }}
