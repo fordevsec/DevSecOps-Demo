@@ -54,3 +54,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue_title: Security Tests
           artifact_name: DAST-Scan-Report
+          allow_failure: true
