@@ -41,6 +41,7 @@ jobs:
         uses: zaproxy/action-full-scan@v0.9.0
         with:
           # docker_name: "owasp/zap2docker-stable" 安定版でスキャンする場合は指定必要なし
-          token: ${{ secrets.GITHUB_TOKEN }}
           target: "http://localhost:8000/testapp/"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
           artifact_name: DAST-Scan-Report
